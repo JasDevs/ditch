@@ -78,7 +78,7 @@ body {
 .hole {
     width: 35px;
     height: 20px;
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(36, 36, 36);
     position: relative;
     top: 100px;
     margin-top: -20px;

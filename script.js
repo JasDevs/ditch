@@ -10,17 +10,9 @@ var both = 0;
 var counter = 0;
 
 var speed = 1;
-var spawnSpeed = 0.5;
+var spawnSpeed = 0.4;
 
 var currentBlocks = [];
-
-function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-        currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-}
 
 function moveLeft() {
     var left = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
@@ -42,14 +34,17 @@ document.addEventListener("keydown", event => {
         if (event.key === "ArrowLeft") {
             interval = setInterval(moveLeft, 1);
         }
-        else if (event.key === "ArrowRight") {
+        if (event.key === "ArrowRight") {
             interval = setInterval(moveRight, 1);
         }
-        else if (event.key === "a") {
+        if (event.key === "a") {
             interval = setInterval(moveLeft, 1);
         }
-        else if (event.key === "d") {
+        if (event.key === "d") {
             interval = setInterval(moveRight, 1);
+        }
+        if (event.key === "r") {
+            location.reload()
         }
     }
 });
@@ -59,13 +54,8 @@ document.addEventListener("keyup", event => {
     both = 0;
 });
 
-document.addEventListener("keydown", event => {
-    if (event.key === "r") {
-        location.reload()
-    }});
 
-
-setInterval (function() {
+setInterval(function () {
     spawnSpeed += 0.01
 }, 1000);
 
@@ -105,6 +95,7 @@ var blocks = setInterval(function () {
 
         counter++;
     }
+
     var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
     var characterLeft = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
 
@@ -118,6 +109,9 @@ var blocks = setInterval(function () {
         clearInterval(blocks);
     }
 
+    if (characterTop >= 550) {
+        character.style.top = 340 + "px";
+    }
     for (var i = 0; i < currentBlocks.length; i++) {
         let current = currentBlocks[i];
 
@@ -130,7 +124,7 @@ var blocks = setInterval(function () {
         iblock.style.top = iblockTop - spawnSpeed + "px";
         ihole.style.top = iblockTop - spawnSpeed + "px";
 
-        if (iblockTop < -20) {
+        if (iblockTop < 5) {
             currentBlocks.shift();
 
             iblock.remove();

@@ -1,5 +1,5 @@
-# ditch
-Small javascript web game, the aim is to go down the holes and not die by hitting the top
+# ditch-game
+Small javascript web game
 
 A/Left Arrow to move left
 D/Right Arrow to move right!
